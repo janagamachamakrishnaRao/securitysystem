@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inside</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+background:#f4f6f9;
+font-family:Arial;
+}
+
+.navbar-brand{
+font-size:14px;
+}
+
+/* Cards */
+.stat{
+padding:15px;
+color:white;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+transition:0.3s;
+}
+
+.stat:hover{
+transform:scale(1.02);
+}
+
+.orange{background:#f39c12;}
+.blue{background:#3498db;}
+
+/* Card Box */
+.card-box{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+margin-bottom:15px;
+}
+
+/* Table */
+.table-responsive{
+overflow-x:auto;
+}
+
+table{
+font-size:13px;
+background:white;
+}
+
+tr:hover{
+background:#f2f2f2;
+}
+
+th, td{
+vertical-align:middle;
+}
+
+/* Active row */
+.active-row{
+background:#fff8e1;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark bg-dark px-2">
+<div class="container-fluid d-flex justify-content-between">
+<span class="navbar-brand">Pennar Security</span>
+
+<div class="d-flex flex-wrap">
+<a href="/entry" class="btn btn-outline-light btn-sm">Entry</a>
+<a href="/logs" class="btn btn-outline-light btn-sm">Logs</a>
+<a href="/inside" class="btn btn-outline-light btn-sm">Inside</a>
+<a href="/dashboard" class="btn btn-outline-light btn-sm">Dash</a>
+<a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+</div>
+</div>
+</nav>
+
+<div class="container-fluid px-3 mt-3">
+
+<!-- HEADER WITH ACTIONS -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+<h3>Currently Inside</h3>
+
+<div class="d-flex gap-2">
+<a href="/inside" class="btn btn-outline-secondary btn-sm">Refresh</a>
+<a href="/entry" class="btn btn-success btn-sm">+ New Entry</a>
+</div>
+</div>
+
+<!-- STATS -->
+<div class="row mb-3">
+
+<div class="col-6 mb-2">
+<div class="stat orange">
+Active Visitors<br>{{ data|length }}
+</div>
+</div>
+
+<div class="col-6 mb-2">
+<div class="stat blue">
+Today Active<br>{{ today_inside or data|length }}
+</div>
+</div>
+
+</div>
+
+<!-- TABLE -->
+<div class="table-responsive card-box">
+
+<table class="table table-bordered">
+
+<thead class="table-dark">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% if data %}
+{% for p in data %}
+<tr class="active-row">
+
+<td>{{ p[0] }}</td>
+<td>{{ p[2] }}</td>
+<td>{{ p[3] }}</td>
+
+<td>
+<a href="/exit/{{ p[0] }}" class="btn btn-danger btn-sm">OUT</a>
+</td>
+
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+<td colspan="4" class="text-center text-muted">
+🚫 No visitors inside right now
+</td>
+</tr>
+{% endif %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+</html>

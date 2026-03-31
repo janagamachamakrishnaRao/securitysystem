@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Pennar Security System</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+margin:0;
+background:#02060a;
+overflow:hidden;
+font-family:Arial;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+/* Background grid */
+
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background:
+linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
+background-size:40px 40px;
+}
+
+/* Main container */
+
+.intro{
+position:relative;
+width:600px;
+height:600px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
+/* Rotating HUD ring */
+
+.ring{
+position:absolute;
+width:420px;
+opacity:0.7;
+animation:ringRotate 10s linear infinite;
+}
+
+@keyframes ringRotate{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/* Radar sweep */
+
+.radar{
+position:absolute;
+width:420px;
+height:420px;
+border-radius:50%;
+background:conic-gradient(
+rgba(0,255,255,0.4) 0deg,
+rgba(0,255,255,0.05) 60deg,
+transparent 120deg
+);
+animation:radarSpin 4s linear infinite;
+}
+
+@keyframes radarSpin{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
+}
+
+/* Shield animation */
+
+.shield{
+position:absolute;
+width:140px;
+left:-300px;
+animation:shieldFly 2.2s forwards;
+z-index:5;
+}
+
+@keyframes shieldFly{
+
+0%{
+left:-300px;
+transform:rotate(-200deg) scale(0.4);
+}
+
+70%{
+left:50%;
+transform:translateX(-50%) rotate(20deg) scale(1.1);
+}
+
+100%{
+left:50%;
+transform:translateX(-50%) rotate(0deg) scale(1);
+}
+
+}
+
+/* Energy pulse */
+
+.pulse{
+position:absolute;
+width:0;
+height:2px;
+background:cyan;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+animation:pulseSpread 2s 2s forwards;
+}
+
+@keyframes pulseSpread{
+
+0%{
+width:0;
+opacity:0;
+}
+
+100%{
+width:700px;
+opacity:1;
+box-shadow:
+0 0 10px cyan,
+0 0 20px cyan,
+0 0 40px cyan;
+}
+
+}
+
+/* Logo text */
+
+.logo{
+position:absolute;
+top:70%;
+font-size:32px;
+letter-spacing:4px;
+opacity:0;
+animation:textShow 2s 3s forwards;
+}
+
+@keyframes textShow{
+
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+text-shadow:
+0 0 10px cyan,
+0 0 20px cyan,
+0 0 40px cyan;
+}
+
+}
+
+/* Subtitle */
+
+.sub{
+margin-top:8px;
+font-size:14px;
+color:#8fdfff;
+opacity:0;
+animation:subShow 2s 3.5s forwards;
+}
+
+@keyframes subShow{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+</style>
+
+<script>
+
+setTimeout(function(){
+window.location.href="/login";
+},6000);
+
+</script>
+
+</head>
+
+<body>
+
+<div class="intro">
+
+<div class="radar"></div>
+
+<img src="/static/hud_ring.png" class="ring">
+
+<div class="pulse"></div>
+
+<img src="/static/shield.png" class="shield">
+
+<div class="logo">
+PENNAR SECURITY SYSTEM
+<div class="sub">SECURE ACCESS PROTOCOL</div>
+</div>
+
+</div>
+
+</body>
+
+</html>

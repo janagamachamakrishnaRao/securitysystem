@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gate Entry</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{background:#f4f6f9;font-family:Arial;}
+.navbar-brand{font-size:14px;}
+.form-box{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+
+/* Buttons */
+.btn{font-size:14px;padding:10px 12px;border-radius:6px;}
+.d-flex .btn{margin:2px;}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark px-2">
+<div class="container-fluid d-flex justify-content-between">
+<span class="navbar-brand">Pennar Security</span>
+
+<div class="d-flex flex-wrap">
+<a href="/entry" class="btn btn-outline-light btn-sm">Entry</a>
+<a href="/logs" class="btn btn-outline-light btn-sm">Logs</a>
+<a href="/inside" class="btn btn-outline-light btn-sm">Inside</a>
+<a href="/dashboard" class="btn btn-outline-light btn-sm">Dash</a>
+<a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+</div>
+</div>
+</nav>
+
+<div class="container-fluid px-3 mt-3">
+<div class="form-box">
+
+<h4>New Visitor Entry</h4>
+
+<form method="post" action="/submit">
+
+<label>Entry Type</label>
+<select name="entry_type" class="form-control mb-2">
+<option>Visitor</option>
+<option>Employee</option>
+<option>Contractor</option>
+</select>
+
+<label>Name</label>
+<input type="text" name="visitor_name" class="form-control mb-2" required>
+
+<label>Purpose</label>
+<input type="text" name="purpose" class="form-control mb-2">
+
+<label>To Whom</label>
+<input type="text" name="to_whom" class="form-control mb-2">
+
+<button class="btn btn-success w-100 mt-2">Submit Entry</button>
+
+</form>
+
+</div>
+</div>
+
+</body>
+</html>
